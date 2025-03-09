@@ -130,15 +130,38 @@ This will display a sorted table of results with:
 - Length-controlled win rate
 - Average output length
 
-## Example Results
+## Latest Example Results
 
-| Model                      | Win Rate | LC Win Rate | Avg Length |
-|----------------------------|----------|-------------|------------|
-| temp150_minp_10            | 56.54%   | 58.12%      | 1852       |
-| temp150_minp_15            | 53.37%   | 56.73%      | 1816       |
-| temp100_minp_05            | 52.01%   | 55.07%      | 1808       |
-| temp80_topp_98             | 51.29%   | 54.65%      | 1810       |
-| temp100_minp_10            | 50.14%   | 53.24%      | 1793       |
-| temp100_topp_98            | 50.43%   | 53.00%      | 1834       |
-| temp150_minp_05            | 48.57%   | 48.13%      | 1919       |
-| temp150_topp_90            | 44.83%   | 42.09%      | 2149       |
+AlpacaEval Results (sorted by length-controlled win rate):
+
+Model                          Win Rate   LC Win Rate  Avg Length  
+----------------------------------------------------------------------
+temp150_minp_10                56.54%     58.12%       1852        
+temp150_minp_15                53.37%     56.73%       1816        
+temp150_minp_20                53.38%     55.45%       1835        
+quad_20_100                    52.80%     55.43%       1821        
+temp100_minp_05                52.01%     55.07%       1808        
+temp200_minp_20                53.08%     54.82%       1861        
+temp80_topp_98                 51.29%     54.65%       1810        
+dynatemp_50_150_75_minp_05     51.58%     54.42%       1807        
+dynatemp_50_200_100_minp_10    51.87%     54.33%       1825        
+temp150_minp_10_seed1337       52.86%     53.84%       1856        
+temp170_minp_15                52.65%     53.75%       1855        
+temp120_minp_10                51.36%     53.75%       1829        
+quad_15_100                    51.65%     53.70%       1843        
+tfs_95                         50.79%     53.49%       1802        
+tfs_98                         50.72%     53.39%       1807        
+temp100_minp_10                50.14%     53.24%       1793        
+temp100_topp_98                50.43%     53.00%       1834        
+temp100_topp_90                50.07%     52.57%       1815        
+temp80                         49.28%     52.40%       1797        
+temp80_topp_95                 50.22%     51.80%       1835        
+temp100_topp_95                48.78%     50.76%       1793        
+temp150_minp_05                48.57%     48.13%       1919        
+temp150_minp_02                44.83%     42.09%       2149        
+temp150_topp_98                44.83%     42.09%       2149        
+temp150_topp_95                44.83%     42.09%       2149        
+temp150_topp_90                44.83%     42.09%       2149        
+temp150_topp_80                44.83%     42.09%       2149        
+mirostat_50_10                 16.40%     16.03%       1822        
+mirostat_60_10                 16.69%     16.04%       1848        
