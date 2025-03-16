@@ -130,6 +130,48 @@ This will display a sorted table of results with:
 - Length-controlled win rate
 - Average output length
 
+## Troubleshooting
+
+### OpenAI API Compatibility Issues
+
+If you encounter errors related to the OpenAI API when running AlpacaEval, you may need to fix compatibility issues between the AlpacaEval code and newer versions of the OpenAI API:
+
+1. **Schema Validation Error**: With OpenAI API version 1.65.3+, you might see this error:
+   ```
+   openai.BadRequestError: Error code: 400 - {'error': {'message': "Invalid schema for function 'make_partial_leaderboard': In context=(), 'required' is required to be supplied and to be an array including every key in properties. Missing 'concise_explanation'."}}
+   ```
+
+2. **Fix for Schema Validation Error**:
+   - Edit the AlpacaEval config files to add the missing field to the required array:
+   - Modify `venv/Lib/site-packages/alpaca_eval/evaluators_configs/alpaca_eval_cot_gpt4_turbo_fn/configs.yaml`:
+     ```yaml
+     # Change this line:
+     required: [ "ordered_models" ]
+     # To:
+     required: [ "ordered_models", "concise_explanation" ]
+     ```
+   - Also modify `venv/Lib/site-packages/alpaca_eval/evaluators_configs/alpaca_eval_gpt4_turbo_fn/configs.yaml` in the same way.
+
+3. **PowerShell Command Syntax**: When running commands in PowerShell, use semicolons (`;`) instead of `&&` to chain commands:
+   ```powershell
+   # Incorrect:
+   cd quest && python -m alpaca_eval.main make_leaderboard ...
+   
+   # Correct:
+   cd quest; python -m alpaca_eval.main make_leaderboard ...
+   ```
+
+4. **Leaderboard Display Error**: You might encounter an error with the `print_leaderboard()` function:
+   ```
+   TypeError: print_leaderboard() got an unexpected keyword argument 'leaderboard_mode'
+   ```
+   This is just a display issue and doesn't affect the evaluation results. The leaderboard.csv file will still be created correctly.
+
+5. **Checking Results**: If the evaluation completes but you're not sure if it worked, check for the existence of the leaderboard file:
+   ```powershell
+   dir leaderboard.csv
+   ```
+
 ## Latest Example AlpacaEval Results (sorted by Length-Controlled Win Rate)
 
 | Model                          | Win Rate | LC Win Rate | Avg Length |
@@ -153,13 +195,23 @@ This will display a sorted table of results with:
 | `temp100_topp_98`              | 50.43%   | 53.00%      | 1834       |
 | `temp100_topp_90`              | 50.07%   | 52.57%      | 1815       |
 | `temp80`                       | 49.28%   | 52.40%      | 1797       |
-| `temp80_topp_95`               | 50.22%   | 51.80%      | 1835       |
-| `temp100_topp_95`              | 48.78%   | 50.76%      | 1793       |
+| `temp100_topp_95`              | 50.22%   | 51.80%      | 1835       |
+| `temp100_minp_02`              | 50.43%   | 51.62%      | 1853       |
+| `temp80_minp_02`               | 48.85%   | 51.46%      | 1802       |
+| `temp80_minp_05`               | 47.84%   | 50.99%      | 1808       |
+| `temp80_topp_95`               | 48.78%   | 50.76%      | 1793       |
+| `temp100`                      | 50.00%   | 50.00%      | 1902       |
+| `dynatemp_100_250_100_minp_10` | 50.86%   | 50.00%      | 2227       |
+| `quad_25_100`                  | 47.85%   | 49.94%      | 1807       |
+| `temp150_tfs_95`               | 51.08%   | 49.94%      | 1969       |
+| `greedy`                       | 46.64%   | 49.90%      | 1765       |
 | `temp150_minp_05`              | 48.57%   | 48.13%      | 1919       |
+| `temp150_topp_80`              | 20.00%   | 43.05%      | 3576       |
 | `temp150_minp_02`              | 44.83%   | 42.09%      | 2149       |
-| `temp150_topp_98`              | 44.83%   | 42.09%      | 2149       |
-| `temp150_topp_95`              | 44.83%   | 42.09%      | 2149       |
-| `temp150_topp_90`              | 44.83%   | 42.09%      | 2149       |
-| `temp150_topp_80`              | 44.83%   | 42.09%      | 2149       |
-| `mirostat_50_10`               | 16.40%   | 16.03%      | 1822       |
-| `mirostat_60_10`               | 16.69%   | 16.04%      | 1848       |
+| `dynatemp_50_150_100`          | 35.37%   | 34.94%      | 2764       |
+| `mirostat_40_10`               | 16.69%   | 16.04%      | 1848       |
+| `mirostat_50_10`               | 16.40%   | 16.04%      | 1822       |
+| `mirostat_60_10`               | 15.62%   | 14.97%      | 1838       |
+| `temp150_topp_98`              | 0.00%    | 0.02%       | 4136       |
+| `temp150_topp_95`              | 0.00%    | 0.00%       | 4943       |
+| `temp150_topp_90`              | 0.00%    | 0.00%       | 9204       |
