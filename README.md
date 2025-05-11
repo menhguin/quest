@@ -176,7 +176,7 @@ If you encounter errors related to the OpenAI API when running AlpacaEval, you m
 
 | Model                          | Win Rate | LC Win Rate | Avg Length |
 |--------------------------------|----------|-------------|------------|
-| `temp150_minp_10`              | 56.54%   | **58.12%**  | 1852       |
+| `temp150_minp_10`              | **56.54%**   | **58.12%**  | 1852       |
 | `temp150_minp_15`              | 53.37%   | 56.73%      | 1816       |
 | `temp150_minp_20`              | 53.38%   | 55.45%      | 1835       |
 | `quad_20_100`                  | 52.80%   | 55.43%      | 1821       |
@@ -215,3 +215,5 @@ If you encounter errors related to the OpenAI API when running AlpacaEval, you m
 | `temp150_topp_98`              | 0.00%    | 0.02%       | 4136       |
 | `temp150_topp_95`              | 0.00%    | 0.00%       | 4943       |
 | `temp150_topp_90`              | 0.00%    | 0.00%       | 9204       |
+
+Evaluations were performed using GPT-4 Turbo with chain-of-thought prompting on outputs from the openchat-3.5-0106 model.
